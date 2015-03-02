@@ -8,6 +8,10 @@
 # May 2013
 # http://crumpspot.blogspot.com/2013/05/using-3x4-matrix-keypad-with-raspberry.html
 #
+# Modified by Donald Merand + Andy Smith for Explo
+# http://www.explo.org
+# http://github.com/exploration
+#
 # main structure is adapted from Bandono's
 # matrixQPI which is wiringPi based.
 # https://github.com/bandono/matrixQPi?source=cc
@@ -92,8 +96,8 @@ if __name__ == '__main__':
     # Initialize the keypad class
     kp = keypad()
     attempt = "0000"
-    passcode = "1912"    
-    haltcode = "5764"
+    passcode = "4444"    
+    haltcode = "5555"
     with open("/home/pi/Alarm/armed.txt", "r+") as fo:
         fo.seek(0, 0)
         fo.write("0")
@@ -107,7 +111,7 @@ if __name__ == '__main__':
     GPIO.setup(7, GPIO.OUT) #Flashing Light
     GPIO.output(7, GPIO.LOW)
 
-    subprocess.call("mpg123 /home/pi/Alarm/ready.mp3", shell=True)
+    subprocess.call("mpg123 /home/pi/Alarm/Audio/ready.mp3", shell=True)
 
     # Loop while waiting for a keypress
     while True:
@@ -134,18 +138,18 @@ if __name__ == '__main__':
                 GPIO.output(10, GPIO.HIGH) #Green LED On
                 GPIO.output(9, GPIO.LOW) #Red LED off
                 GPIO.output(7, GPIO.LOW)
-                subprocess.call("mpg123 /home/pi/Alarm/disarmed.mp3", shell=True)
+                subprocess.call("mpg123 /home/pi/Alarm/Audio/disarmed.mp3", shell=True)
             else:
                 GPIO.output(10, GPIO.LOW) #Green LED Off
                 GPIO.output(9, GPIO.HIGH) #Red LED on
-                subprocess.call("mpg123 /home/pi/Alarm/armed.mp3", shell=True)
+                subprocess.call("mpg123 /home/pi/Alarm/Audio/armed.mp3", shell=True)
                 time.sleep(10)
                 with open("/home/pi/Alarm/armed.txt", "r+") as fo:
                     fo.seek(0, 0)
                     fo.write("1")
                 fo.closed
         elif (attempt == haltcode):
-            subprocess.call("mpg123 /home/pi/Alarm/shutdown.mp3", shell=True)
+            subprocess.call("mpg123 /home/pi/Alarm/Audio/shutdown.mp3", shell=True)
             subprocess.call("halt", shell=True)
         
         time.sleep(0.5)
