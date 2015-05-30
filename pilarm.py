@@ -18,8 +18,8 @@ import os
 import subprocess
 
 # Set the GPIO pins for our lights + sensors
-greenLED      = 10
-redLED        = 9
+greenLED      = 16
+redLED        = 21
 flashingLight = 6
 pirSensor     = 22
 
