@@ -28,12 +28,12 @@ previousPir = 0
 # loop FOREVER
 while True:
   # check value of PIR sensor
-	currentPir = GPIO.input(pirSensor)	
-	if previousPir == 0 and currentPir == 1:
+  currentPir = GPIO.input(pilarm.pirSensor)	
+  if previousPir == 0 and currentPir == 1:
     # movement happened since last check, see if the alarm is set
     status = pilarm.getAlarmStatus()
     print "Motion detected, armed status: " + status 
-		if (status == "1"):
+    if (status == "1"):
       # alarm is set, warn the house
       pilarm.playAudio("motiondetect.mp3")
       # wait for 10 seconds while keypadd.py determines whether user is

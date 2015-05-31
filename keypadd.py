@@ -24,7 +24,7 @@ GPIO.output(pilarm.greenLED, GPIO.HIGH) #turns the green LED on
 GPIO.setup(pilarm.redLED, GPIO.OUT)
 GPIO.output(pilarm.redLED, GPIO.LOW)    #turns the red LED off
 GPIO.setup(pilarm.flashingLight, GPIO.OUT)
-GPIO.output(pilarm.flashingLight, LOW)  #turns the flashing light (powerswitch) off
+GPIO.output(pilarm.flashingLight, GPIO.LOW)  #turns the flashing light (powerswitch) off
 
   
 # Initialize the keypad class

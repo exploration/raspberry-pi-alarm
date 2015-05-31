@@ -37,7 +37,7 @@ def playAudio(filename):
 
 # function to get the status of the alarm
 def getAlarmStatus():
-  with open("/home/pi/Alarm/armed.txt", "r+") as fo:
+  with open("/home/pi/raspberry-pi-alarm/armed.txt", "r+") as fo:
     fo.seek(0, 0)
     status = fo.read(1)
   fo.closed
@@ -45,7 +45,7 @@ def getAlarmStatus():
 
 # function to set the status of the alarm
 def setAlarmStatus(status):
-  with open("/home/pi/Alarm/armed.txt", "r+") as fo:
+  with open("/home/pi/raspberry-pi-alarm/armed.txt", "r+") as fo:
     fo.seek(0, 0)
     fo.write(status)
   fo.closed

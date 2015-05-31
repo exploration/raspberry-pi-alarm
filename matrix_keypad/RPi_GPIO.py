@@ -1,6 +1,6 @@
 #!/usr/bin/python
  
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
  
 class keypad():
     def __init__(self, columnCount = 3):
