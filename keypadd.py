@@ -41,10 +41,10 @@ while True:
 
   # Print the result
   print digit
-  attempt = (attempt[1:] + str(digit))  
-  print attempt
+  pilarm.attempt = (pilarm.attempt[1:] + str(digit))  
+  print pilarm.attempt
 
-  if (attempt == pilarm.passcode):
+  if (pilarm.attempt == pilarm.passcode):
     #passcode match, check alarm status
     if (pilarm.getAlarmStatus() == pilarm.alarmOn):
       #system was armed, disarm it
@@ -60,7 +60,7 @@ while True:
       pilarm.playAudio("armed.mp3")
       time.sleep(10)
       pilarm.setAlarmStatus(pilarm.alarmOn)
-  elif (attempt == pilarm.haltcode):
+  elif (pilarm.attempt == pilarm.haltcode):
     # halt code match, close down the entire keypad operation
     pilarm.playAudio("shutdown.mp3")
     subprocess.call("halt", shell=True)

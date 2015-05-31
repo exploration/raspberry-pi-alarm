@@ -16,7 +16,7 @@ class keypad():
             ]
 
             self.ROW         = [18,23,24,25]
-            self.COLUMN      = [4,17,22]
+            self.COLUMN      = [4,17,27]
 
         elif columnCount is 4:
             self.KEYPAD = [
@@ -27,7 +27,7 @@ class keypad():
             ]
 
             self.ROW         = [18,23,24,25]
-            self.COLUMN      = [4,17,22,21]
+            self.COLUMN      = [4,17,27,22]
         else:
             return
      
