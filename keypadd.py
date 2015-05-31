@@ -19,6 +19,7 @@ import time
 
 # Set up the various lights
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 GPIO.setup(pilarm.greenLED, GPIO.OUT)
 GPIO.output(pilarm.greenLED, GPIO.HIGH) #turns the green LED on
 GPIO.setup(pilarm.redLED, GPIO.OUT)
@@ -48,24 +49,28 @@ while True:
     #passcode match, check alarm status
     if (pilarm.getAlarmStatus() == pilarm.alarmOn):
       #system was armed, disarm it
-      pilarm.setAlarmStatus(pilarm.alarmOff)
       GPIO.output(pilarm.greenLED, GPIO.HIGH)      #green LED on
       GPIO.output(pilarm.redLED, GPIO.LOW)         #red LED off
       GPIO.output(pilarm.flashingLight, GPIO.LOW)  #flashing light off (if applicable)
       pilarm.playAudio("disarmed.mp3")
+      pilarm.attempt = "0000"                        #reset the "attempt"
+      pilarm.setAlarmStatus(pilarm.alarmOff)
     else:
       #system was disabled, and user intends to arm it
       GPIO.output(pilarm.greenLED, GPIO.LOW)       #green LED Off
       GPIO.output(pilarm.redLED, GPIO.HIGH)        #red LED on
       pilarm.playAudio("armed.mp3")
-      time.sleep(10)
       pilarm.setAlarmStatus(pilarm.alarmOn)
+      print("Please leave the building...")
+      # print out the countdown
+      for x in range(1,10):
+        print "%d" % (10 - x)
+        time.sleep(1)
+      pilarm.attempt = "0000"                        #reset the "attempt"
   elif (pilarm.attempt == pilarm.haltcode):
-    # halt code match, close down the entire keypad operation
+    # halt code match, which actually shuts down the entire raspberry pi
     pilarm.playAudio("shutdown.mp3")
     subprocess.call("halt", shell=True)
-    # also close down the alarm daemon
-    subprocess.call("sudo killall alarmd.py", shell=True)
   
   # wait a half second, then try again
   time.sleep(0.5)
