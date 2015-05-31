@@ -27,9 +27,9 @@ To set up:
   - Install the actual PiLarm code:
     - `sudo apt-get install git-core`
     - `cd && git clone https://github.com/exploration/raspberry-pi-alarm`
-    - Set the files to run on boot by adding the following two lines to `/etc/rc.local` just before the line that reads `exit 0`:
-      - `sudo nano /etc/rc.local`, then...
+  - Set the PiLarm files to run on boot by adding the following two lines to `/etc/rc.local` just before the line that reads `exit 0`:
+      - `sudo nano /etc/rc.local`, then add...
       - `sudo python /home/pi/raspberry-pi-alarm/keypadd.py &`
       - `sudo python /home/pi/raspberry-pi-alarm/alarmd.py &`
-    - (As a side note, you can do all of the `apt-get` steps in one go if you prefer)
+  - (As a side note, you can do all of the `apt-get` steps in one go if you prefer)
       - `sudo apt-get update && sudo apt-get install python-dev python-rpi.gpio fswebcam mpg123 git-core`
