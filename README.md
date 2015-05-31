@@ -15,7 +15,7 @@ To set up:
   - You _definitely_ want to set the "Enable Camera" option.
   - You _may_ want to "force" audio output to use the 1/8" jack, depending on how you want to set up the audio portion of your project.
 - Once you have verified that the raspberry pi is accessible and booting up, you can move on:
-- Then follow the instructions from [here](http://makezine.com/projects/pilarm-portable-raspberry-pi-room-alarm/), steps 2-5
+- Then follow the instructions from [here](http://makezine.com/projects/pilarm-portable-raspberry-pi-room-alarm/), steps 2-5:
   - Install GPIO (General Purpose Input/Output)
     - `sudo apt-get update`
     - `sudo apt-get install python-dev`
@@ -31,6 +31,5 @@ To set up:
       - `sudo nano /etc/rc.local`, then...
       - `sudo python /home/pi/raspberry-pi-alarm/keypadd.py &`
       - `sudo python /home/pi/raspberry-pi-alarm/alarmd.py &`
-
-As a side note, you can do all of the `apt-get` steps in one go if you prefer:
-- `sudo apt-get update && sudo apt-get install python-dev python-rpi.gpio fswebcam mpg123 git-core`
+    - (As a side note, you can do all of the `apt-get` steps in one go if you prefer)
+      - `sudo apt-get update && sudo apt-get install python-dev python-rpi.gpio fswebcam mpg123 git-core`
