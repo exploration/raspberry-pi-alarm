@@ -18,17 +18,18 @@ import os
 import subprocess
 
 # Set the GPIO pins for our lights + sensors
-greenLED      = 16
-redLED        = 21
-flashingLight = 6
-pirSensor     = 22
+greenLED         = 16
+redLED           = 21
+flashingLight    = 6
+pirSensor        = 22
 
 # Set some keypad + alarm values
-alarmOff = "0"
-alarmOn  = "1"
-attempt  = "0000"
-passcode = "4444"    
-haltcode = "5555"
+alarmOff         = "0"
+alarmOn          = "1"
+attempt          = "0000"
+passcode         = "4444"    
+haltcode         = "5555"
+countdownSeconds = 10
 
 
 # handy function which we will use to play audio all over the place
