@@ -12,6 +12,7 @@
 #######################################################################
 import datetime
 import pilarm
+import random
 import RPi.GPIO as GPIO
 import subprocess
 import time
@@ -42,7 +43,7 @@ while True:
       if (pilarm.getAlarmStatus() == "1"):
         # still armed, password was not correctly entered
         print "Correct passcode not entered, sounding alarm"
-        grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture$RANDOM.jpg", shell=True)
+        grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture" + str(random.random()) + ".JPG", shell=True)
         grab_cam.wait()
 
         GPIO.output(pilarm.flashingLight, GPIO.HIGH)
