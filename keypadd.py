@@ -63,8 +63,8 @@ while True:
       pilarm.setAlarmStatus(pilarm.alarmOn)
       print("Please leave the building...")
       # print out the countdown
-      for x in range(1,10):
-        print "%d" % (10 - x)
+      for x in range(1,pilarm.countdownSeconds):
+        print "%d" % (pilarm.countdownSeconds - x)
         time.sleep(1)
       pilarm.attempt = "0000"                        #reset the "attempt"
   elif (pilarm.attempt == pilarm.haltcode):
