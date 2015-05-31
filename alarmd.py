@@ -18,8 +18,8 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pilarm.pirSensor, GPIO.IN)
-# though this file can activate the flashing light, the alarmd.py file takes
-# care of the initialization of that light, so we skip it here
+GPIO.setup(pilarm.flashingLight, GPIO.OUT)
+GPIO.output(pilarm.flashingLight, GPIO.LOW)  #turns the flashing light (powerswitch) off
 
 
 # --------- Main Program ---------
@@ -31,17 +31,15 @@ while True:
   currentPir = GPIO.input(pilarm.pirSensor)	
   if previousPir == 0 and currentPir == 1:
     # movement happened since last check, see if the alarm is set
-    status = pilarm.getAlarmStatus()
     print "Motion detected, armed status: " + status 
-    if (status == "1"):
+    if (pilarm.getAlarmStatus() == pilarm.alarmOn):
       # alarm is set, warn the house
       pilarm.playAudio("motiondetect.mp3")
       # wait for 10 seconds while keypadd.py determines whether user is
       # correctly entering the password
       time.sleep(10)
       # check to see if disarm was successful
-      status = piLarm.getAlarmStatus()
-      if (status == "1"):
+      if (pilarm.getAlarmStatus() == "1"):
         # still armed, password was not correctly entered
         print "Correct passcode not entered, sounding alarm"
         grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture$RANDOM.jpg", shell=True)
