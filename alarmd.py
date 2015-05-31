@@ -31,7 +31,7 @@ while True:
   currentPir = GPIO.input(pilarm.pirSensor)	
   if previousPir == 0 and currentPir == 1:
     # movement happened since last check, see if the alarm is set
-    print "Motion detected, armed status: " + status 
+    print "Motion detected."
     if (pilarm.getAlarmStatus() == pilarm.alarmOn):
       # alarm is set, warn the house
       pilarm.playAudio("motiondetect.mp3")
