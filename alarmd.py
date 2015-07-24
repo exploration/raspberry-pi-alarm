@@ -46,6 +46,8 @@ while True:
         grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture" + str(random.random()) + ".JPG", shell=True)
         grab_cam.wait()
 
+        # THIS IS WHERE YOU ADD CODE FOR THINGS YOU WANT TO DO WHEN THE
+        # INTRUDER HASN'T TYPED IN THE RIGHT PASSWORD
         GPIO.output(pilarm.flashingLight, GPIO.HIGH)
         pilarm.playAudio("alarm.mp3")
         pilarm.playAudio("surrender.mp3")
