@@ -40,7 +40,7 @@ while True:
       # correctly entering the password
       time.sleep(10)
       # check to see if disarm was successful
-      if (pilarm.getAlarmStatus() == "1"):
+      if (pilarm.getAlarmStatus() == pilarm.alarmOn):
         # still armed, password was not correctly entered
         print "Correct passcode not entered, sounding alarm"
         grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture" + str(random.random()) + ".JPG", shell=True)
