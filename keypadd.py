@@ -53,7 +53,7 @@ while True:
       GPIO.output(pilarm.redLED, GPIO.LOW)         #red LED off
       GPIO.output(pilarm.flashingLight, GPIO.LOW)  #flashing light off (if applicable)
       pilarm.playAudio("disarmed.mp3")
-      pilarm.attempt = "0000"                        #reset the "attempt"
+      pilarm.attempt = pilarm.resetcode            #reset the "attempt"
       pilarm.setAlarmStatus(pilarm.alarmOff)
     else:
       #system was disabled, and user intends to arm it
@@ -66,7 +66,7 @@ while True:
       for x in range(1,pilarm.countdownSeconds):
         print "%d" % (pilarm.countdownSeconds - x)
         time.sleep(1)
-      pilarm.attempt = "0000"                        #reset the "attempt"
+      pilarm.attempt = pilarm.resetcode            #reset the "attempt"
   elif (pilarm.attempt == pilarm.haltcode):
     # halt code match, which actually shuts down the entire raspberry pi
     pilarm.playAudio("shutdown.mp3")
