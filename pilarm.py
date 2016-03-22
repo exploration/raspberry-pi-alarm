@@ -29,6 +29,7 @@ alarmOn          = "1"
 attempt          = "0000"
 passcode         = "4444"    
 haltcode         = "5555"
+resetcode        = "0000"
 countdownSeconds = 10
 
 
@@ -50,3 +51,8 @@ def setAlarmStatus(status):
     fo.seek(0, 0)
     fo.write(status)
   fo.closed
+
+# take a picture, name it pictureRANDOMNUMBER.JPG
+def takePicture():
+  grab_cam = subprocess.Popen("sudo raspistill -w 640 -h 480 -o /home/pi/raspberry-pi-alarm/pictures/picture" + str(random.random()) + ".JPG", shell=True)
+  grab_cam.wait()
